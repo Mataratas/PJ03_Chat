@@ -21,7 +21,7 @@ void CSession::init() {
 		while (!in.eof()) {
 			char arr_ch[128]{};
 			in.getline(arr_ch, 128);
-			if (strlen(arr_ch) == 0)
+			if (arr_ch[0] == '\0')
 				continue;
 			CUser* uptr = new CUser(arr_ch);
 			arr_users.add(uptr);
@@ -37,7 +37,7 @@ void CSession::init() {
 		while (!in.eof()) {
 			char arr_ch[128]{};
 			in.getline(arr_ch, 128);
-			if (strlen(arr_ch) == 0)
+			if (arr_ch[0] == '\0')
 				continue;
 			CMessage* mptr = new CMessage(arr_ch);
 			arr_msg.add(mptr);
@@ -109,7 +109,6 @@ void CSession::save_user_data() const {
 auto CSession::login()->bool{
 	std::string u_name;
 	std::string u_pwd;
-	std::string input;
 
 	if (first_launch) {
 		std::cout << "Welcome to the chat session. Choose Login (Enter to exit):\n";
@@ -145,6 +144,7 @@ auto CSession::login()->bool{
 			return false;
 		
 	}else{
+		std::string input;
 		std::cout << "Welcome to the chat session. New user?(y/n. Enter to exit):\n";
 		std::getline(std::cin, input, '\n');
 		if (input.size()) {

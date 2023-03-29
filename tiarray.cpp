@@ -57,7 +57,7 @@ auto CTypeArray<Y>::operator=(const CTypeArray& rhs)->CTypeArray& {
 }
 //-----------------------------------------------------------------------------------------------------
 template<typename Y>
-auto CTypeArray<Y>::operator[](const int& idx)->Y& {
+auto CTypeArray<Y>::operator[](int idx)->Y& {
 	if (idx < 0 || idx >= _size)
 		throw CBadRangeException(idx);
 	return _data[idx];
@@ -208,7 +208,7 @@ auto CTypeArray<Y>::resize(int new_size) -> int {
 }
 //-----------------------------------------------------------------------------------------------------
 template<typename Y>
-auto CTypeArray<Y>::index_of(Y val) -> int {
+auto CTypeArray<Y>::index_of(const Y val) -> int {
 	int res(-1);
 	if (_data) {
 		for (int i = 0; i < _size; i++) {

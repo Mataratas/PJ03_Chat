@@ -11,11 +11,11 @@ CUser::CUser(const char* nm){
 		name = nm;
 }
 //---------------------------------------------------------------------------------------
-bool CUser::operator==(CUser& rhs) {
+bool CUser::operator==(const CUser& rhs) {
 	return name == rhs.get_name() && pwd == rhs.get_pwd();
 }
 //---------------------------------------------------------------------------------------
-bool CUser::operator!=(CUser& rhs) {
+bool CUser::operator!=(const CUser& rhs) {
 	return name != rhs.get_name() || pwd != rhs.get_pwd();
 }
 //---------------------------------------------------------------------------------------

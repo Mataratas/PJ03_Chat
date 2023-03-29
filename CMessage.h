@@ -10,8 +10,8 @@ enum MsgType {
 class CMessage{
 public:
 	CMessage(const char*, const std::string&, const std::string&);
-	CMessage(const char*);
-	~CMessage() noexcept;
+	explicit CMessage(const char*);
+	~CMessage()=default;
 	CMessage(const CMessage&)=delete;
 	CMessage& operator=(const CMessage&)=delete;
 	friend std::ostream& operator<<(std::ostream& out, const CMessage&);	

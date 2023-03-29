@@ -8,14 +8,14 @@
 template<typename Y> class CTypeArray{
 public:
 	CTypeArray() :_size(0), _data(nullptr) {};
-	CTypeArray(int);
-	CTypeArray(const CTypeArray&);
+	explicit CTypeArray(int);
+	explicit CTypeArray(const CTypeArray&);
 	~CTypeArray();
 
 
 	auto size() -> int const { return _size;}
 	auto operator=(const CTypeArray&)->CTypeArray&;
-	auto operator[](const int&) ->Y&;
+	auto operator[](int) ->Y&;
 
 	friend std::ostream& operator<<(std::ostream& out, const CTypeArray<Y>& arr)
 	{
@@ -33,7 +33,7 @@ public:
 	auto remove(int)->int;
 	auto clear()->int;
 	auto resize(int)->int;
-	auto index_of(Y)->int;
+	auto index_of(const Y)->int;
 	void random_fill();
 	void Show();
 
@@ -45,8 +45,7 @@ private:
 //--------------------------------------------------------------------------------------------------------------------
 class CBadSizeException :public std::exception {
 public:
-	CBadSizeException(int v) {
-		_info = "Invalid array size passed to constructor:";
+	explicit CBadSizeException(int v):_info("Invalid array size passed to constructor:"){
 		_info += std::to_string(v);
 	};
 	virtual const char* what() const override { return _info.c_str(); };
@@ -56,8 +55,7 @@ private:
 //--------------------------------------------------------------------------------------------------------------------
 class CBadRangeException :public std::exception {
 public:
-	CBadRangeException(int v) {
-		_info = "Invalid array item index:";
+	explicit CBadRangeException(int v):_info("Invalid array item index:") {
 		_info += std::to_string(v);
 	};
 	virtual const char* what() const override { return	_info.c_str(); }

@@ -1,10 +1,7 @@
 #include "CMessage.h"
 //---------------------------------------------------------------------------------------------
-CMessage::CMessage(const char* msg, const std::string& snd, const std::string& rcv) {
-	body = msg;
-	reciever = rcv;
-	sender = snd;
-	timestamp = std::time(nullptr);
+CMessage::CMessage(const char* msg, const std::string& snd, const std::string& rcv):body(msg), reciever(rcv), sender(snd), timestamp(std::time(nullptr)){
+
 }
 //---------------------------------------------------------------------------------------------
 CMessage::CMessage(const char* msg) {
@@ -26,10 +23,6 @@ CMessage::CMessage(const char* msg) {
 		body = arr_parts[3];		
 		type = std::stoi(s_tmp)==1 ? eOld : eNew;
 	}
-}
-//---------------------------------------------------------------------------------------------
-CMessage::~CMessage() {
-	//std::cout << "Destructor of message:" << body << std::endl;
 }
 //---------------------------------------------------------------------------------------------
 auto CMessage::show_time() -> const std::string{
